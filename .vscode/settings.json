@@ -2,9 +2,28 @@
     "python.testing.cwd": "./src",
     "python.testing.unittestArgs": [
         "-v",
+        "-s",
+        ".",
         "-p",
         "test_*.py"
     ],
     "python.testing.pytestEnabled": false,
-    "python.testing.unittestEnabled": true
+    "python.testing.unittestEnabled": true,
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "cSpell.words": [
+        "assg",
+        "autograding",
+        "cwid",
+        "doctests",
+        "imshow",
+        "Keras",
+        "logit",
+        "mathcal",
+        "matplotlib",
+        "ndimage",
+        "overfitting",
+        "unflatten",
+        "unittests"
+    ]
 }
