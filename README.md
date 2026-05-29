@@ -7,7 +7,7 @@ date: ''
 # Description
 
 Welcome to our second class assignment.  In this assignment you will be building the components
-of a neural network like architecture by hand and from scratch, using basic numpy vectorized
+of a neural network like architecture by hand and from scratch, using basic NumPy vectorized
 operations.   You will build a logistic regression classifier to recognize  cats. This assignment
 will step you through how to do this with a Neural Network mindset, and so will also hone your intuitions about deep learning.
 

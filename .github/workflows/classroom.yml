@@ -11,21 +11,20 @@ jobs:
       max-parallel: 5
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v3
+    - uses: actions/checkout@v6
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v6
       with:
-        python-version: '3.12'
-    - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
+        python-version: '3.13'
     - name: Set PYTHONPATH to see project modules
       run: |
          echo "PYTHONPATH=$GITHUB_WORKSPACE/src" >> $GITHUB_ENV
     - name: Install dependencies
       run: |
-        conda env update --file environment.yml --name base
+        pip3 install -q -r .devcontainer/requirements.txt
+    - name: Force Javascript 24
+      run: |
+         echo "FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true" >> $GITHUB_ENV
 
     - name: Show Python versions
       id: show-python-versions
@@ -53,8 +52,9 @@ jobs:
       uses: etamu-class/autograding-command-grader@v10
       with:
         test-name: 'Test Task 1.1'
+        working-directory: './src'        
         setup-command: ''
-        command: 'python -m twisted.trial test_assg_tasks.test_flatten_image_dataset'
+        command: 'python -m unittest test_assg_tasks.test_flatten_image_dataset'
         timeout: '10'
         max-score: '10'
 
@@ -63,8 +63,9 @@ jobs:
       uses: etamu-class/autograding-command-grader@v10
       with:
         test-name: 'Test Task 1.2'
+        working-directory: './src'        
         setup-command: ''
-        command: 'python -m twisted.trial test_assg_tasks.test_standardize_image_dataset'
+        command: 'python -m unittest test_assg_tasks.test_standardize_image_dataset'
         timeout: '10'
         max-score: '10'
 
@@ -74,7 +75,7 @@ jobs:
       with:
         test-name: 'Test Task 2.1'
         setup-command: ''
-        command: 'python -m twisted.trial test_assg_tasks.test_sigmoid'
+        command: 'python -m unittest test_assg_tasks.test_sigmoid'
         timeout: '10'
         max-score: '10'
 
@@ -84,7 +85,7 @@ jobs:
       with:
         test-name: 'Test Task 2.2'
         setup-command: ''
-        command: 'python -m twisted.trial test_assg_tasks.test_initialize_parameters'
+        command: 'python -m unittest test_assg_tasks.test_initialize_parameters'
         timeout: '10'
         max-score: '10'
 
@@ -94,7 +95,7 @@ jobs:
       with:
         test-name: 'Test Task 2.3'
         setup-command: ''
-        command: 'python -m twisted.trial test_assg_tasks.test_forward_pass'
+        command: 'python -m unittest test_assg_tasks.test_forward_pass'
         timeout: '10'
         max-score: '10'
 
@@ -104,7 +105,7 @@ jobs:
       with:
         test-name: 'Test Task 2.4'
         setup-command: ''
-        command: 'python -m twisted.trial test_assg_tasks.test_backward_pass'
+        command: 'python -m unittest test_assg_tasks.test_backward_pass'
         timeout: '10'
         max-score: '10'
 
@@ -114,7 +115,7 @@ jobs:
       with:
         test-name: 'Test Task 2.5'
         setup-command: ''
-        command: 'python -m twisted.trial test_assg_tasks.test_optimize'
+        command: 'python -m unittest test_assg_tasks.test_optimize'
         timeout: '10'
         max-score: '10'
 
@@ -124,7 +125,7 @@ jobs:
       with:
         test-name: 'Test Task 2.6'
         setup-command: ''
-        command: 'python -m twisted.trial test_assg_tasks.test_predict'
+        command: 'python -m unittest test_assg_tasks.test_predict'
         timeout: '10'
         max-score: '10'
 

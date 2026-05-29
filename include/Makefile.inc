@@ -61,14 +61,14 @@ $(assg_doc) : README.md
 ##
 .PHONY : unit-tests
 unit-tests :
-	python -m twisted.trial test_assg_tasks.test_flatten_image_dataset
-	python -m twisted.trial test_assg_tasks.test_standardize_image_dataset
-	python -m twisted.trial test_assg_tasks.test_sigmoid
-	python -m twisted.trial test_assg_tasks.test_initialize_parameters
-	python -m twisted.trial test_assg_tasks.test_forward_pass
-	python -m twisted.trial test_assg_tasks.test_backward_pass
-	python -m twisted.trial test_assg_tasks.test_optimize
-	python -m twisted.trial test_assg_tasks.test_predict
+	cd src; python -m unittest test_assg_tasks.test_flatten_image_dataset
+	cd src; python -m unittest test_assg_tasks.test_standardize_image_dataset
+	python -m unittest test_assg_tasks.test_sigmoid
+	python -m unittest test_assg_tasks.test_initialize_parameters
+	python -m unittest test_assg_tasks.test_forward_pass
+	python -m unittest test_assg_tasks.test_backward_pass
+	python -m unittest test_assg_tasks.test_optimize
+	python -m unittest test_assg_tasks.test_predict
 	
 
 ## clean        : Remove auto-generated files for a completely
